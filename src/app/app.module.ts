@@ -15,12 +15,16 @@ import { RunningComponent } from './component/running/running.component';
 import { RunService } from './service/run.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { DurationPipe } from './pipe/duration.pipe';
+import { PacePipe } from './pipe/pace.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     RunningComponent,
-    DashboardComponent
+    DashboardComponent,
+    DurationPipe,
+    PacePipe
   ],
   imports: [
     HttpClientModule,

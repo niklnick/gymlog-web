@@ -20,6 +20,10 @@ export class RunService {
     return this.http.post<Run>(`${this.apiServerUrl}/run/add`, run);
   }
 
+  public addRuns(runs: Run[]): Observable<Run[]> {
+    return this.http.post<Run[]>(`${this.apiServerUrl}/run/addList`, runs);
+  }
+
   public update(run: Run): Observable<Run> {
     return this.http.put<Run>(`${this.apiServerUrl}/run/update`, run);
   }

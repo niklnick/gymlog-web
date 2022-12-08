@@ -1,6 +1,7 @@
 export interface Run {
     id: number;
-    date: string;
+    datetime: Date;
     distance: number;
-    time: string;
+    duration: number;
+    pace: number;
 }

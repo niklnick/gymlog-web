@@ -8,11 +8,12 @@ import { RunService } from 'src/app/service/run.service';
   styleUrls: ['./running.component.scss']
 })
 export class RunningComponent implements OnInit {
-  public runs: Run[] | undefined;
+  runs: Run[] = [];
+  displayedColumns = ['datetime', 'distance', 'duration', 'pace'];
 
   constructor(private runService: RunService) { }
 
-  public getRuns(): void {
+  getRuns(): void {
     this.runService.getRuns().subscribe(
       runs => {
         this.runs = runs;
@@ -23,5 +24,23 @@ export class RunningComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRuns();
+  }
+
+  getTotalDistance(): number {
+    let totalDistance = 0;
+    this.runs.forEach(run => totalDistance += run.distance);
+    return totalDistance;
+  }
+
+  getTotalDuration(): number {
+    let totalDuration = 0;
+    this.runs.forEach(run => totalDuration += run.duration);
+    return totalDuration;
+  }
+
+  getAveragePace(): number {
+    let averagePace = 0;
+    this.runs.forEach(run => averagePace += run.pace);
+    return averagePace / this.runs.length;
   }
 }
