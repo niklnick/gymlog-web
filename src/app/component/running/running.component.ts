@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Run } from 'src/app/data/run';
 import { RunService } from 'src/app/service/run.service';
+import { AddRunDialogComponent } from './add-run-dialog/add-run-dialog.component';
 
 @Component({
   selector: 'app-running',
@@ -11,7 +13,7 @@ export class RunningComponent implements OnInit {
   runs: Run[] = [];
   displayedColumns = ['datetime', 'distance', 'duration', 'pace'];
 
-  constructor(private runService: RunService) { }
+  constructor(private runService: RunService, private dialog: MatDialog) { }
 
   getRuns(): void {
     this.runService.getRuns().subscribe(
@@ -20,6 +22,12 @@ export class RunningComponent implements OnInit {
         console.log(runs);
       }
     );
+  }
+
+  openAddRunDialog(): void {
+    const dialogRef = this.dialog.open(AddRunDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => console.log(result));
   }
 
   ngOnInit(): void {
