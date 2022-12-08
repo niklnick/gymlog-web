@@ -7,6 +7,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -35,6 +36,7 @@ import { PacePipe } from './pipe/pace.pipe';
     MatSidenavModule,
     MatTableModule,
     MatToolbarModule,
+    MatTooltipModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule
