@@ -1,9 +1,9 @@
 <div>
     <h1>Running</h1>
     <p>Total Runs: {{ runs.length }}</p>
-    <p>Total Distance: {{ getTotalDistance() | number }}KM</p>
-    <p>Average Pace: {{ getAveragePace() | number }}</p>
-    <p>Total Duration: {{ getTotalDuration() | number }}</p>
+    <p>Total Distance: {{ getTotalDistance() | number:'1.2-2' }} km</p>
+    <p>Average Pace: {{ getAveragePace() | pace }}</p>
+    <p>Total Duration: {{ getTotalDuration() | duration }}</p>
 </div>
 <ng-container>
     <mat-card>
