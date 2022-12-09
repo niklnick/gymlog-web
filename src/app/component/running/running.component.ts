@@ -27,7 +27,7 @@ export class RunningComponent implements OnInit {
   openAddRunDialog(): void {
     const dialogRef = this.dialog.open(AddRunDialogComponent);
 
-    dialogRef.afterClosed().subscribe(result => console.log(result));
+    dialogRef.afterClosed().subscribe(result => this.runService.addRun(result).subscribe(run => this.runs.push(run)));
   }
 
   ngOnInit(): void {
@@ -48,7 +48,9 @@ export class RunningComponent implements OnInit {
 
   getAveragePace(): number {
     let averagePace = 0;
-    this.runs.forEach(run => averagePace += run.pace);
+    this.runs.forEach(run => {
+      if (run.pace) averagePace += run?.pace;
+    });
     return averagePace / this.runs.length;
   }
 }

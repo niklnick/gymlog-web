@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
@@ -7,13 +8,17 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./add-run-dialog.component.scss']
 })
 export class AddRunDialogComponent {
-  datetime: Date | null = null;
+  datetime: String = formatDate(Date.now(), 'yyyy-MM-ddTHH:mm', 'en-US');
   distance: number | null = null;
   duration: number | null = null;
 
   constructor(private dialogRef: MatDialogRef<AddRunDialogComponent>) { }
 
-  closeAddRunDialog(): void {
-    this.dialogRef.close([this.datetime, this.distance, this.duration]);
+  onSubmitRun(): void {
+    this.dialogRef.close({
+      'datetime': this.datetime,
+      'distance': this.distance,
+      'duration': this.duration
+    });
   }
 }

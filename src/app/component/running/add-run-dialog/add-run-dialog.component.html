@@ -11,12 +11,11 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Duration</mat-label>
-        <span matTextSuffix> min</span>
+        <span matTextSuffix> sec</span>
         <input matInput [(ngModel)]="duration" required>
     </mat-form-field>
 </div>
 <div mat-dialog-actions style="float: right">
-    <button mat-raised-button color="primary"
-        [disabled]="!datetime || !distance || !duration"
-        (click)="closeAddRunDialog()">Submit</button>
+    <button mat-raised-button color="primary" [disabled]="!datetime || !distance || !duration"
+        (click)="onSubmitRun()">Submit</button>
 </div>
