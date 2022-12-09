@@ -1,6 +1,8 @@
 import { formatDate } from '@angular/common';
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Run } from 'src/app/data/run';
+import { RunService } from 'src/app/service/run.service';
 
 @Component({
   selector: 'app-add-run-dialog',
@@ -8,17 +10,21 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./add-run-dialog.component.scss']
 })
 export class AddRunDialogComponent {
-  datetime: String = formatDate(Date.now(), 'yyyy-MM-ddTHH:mm', 'en-US');
-  distance: number | null = null;
-  duration: number | null = null;
+  datetime: string = '';
+  distance!: number;
+  duration!: number;
 
-  constructor(private dialogRef: MatDialogRef<AddRunDialogComponent>) { }
+  constructor(private runService: RunService, private dialogRef: MatDialogRef<AddRunDialogComponent>, @Inject(MAT_DIALOG_DATA) private runs: Run[]) {
+    this.datetime = formatDate(Date.now(), 'yyyy-MM-ddTHH:mm', 'en-US');
+  }
 
-  onSubmitRun(): void {
-    this.dialogRef.close({
-      'datetime': this.datetime,
-      'distance': this.distance,
-      'duration': this.duration
-    });
+  onCancelAddRunDialog(): void {
+    this.dialogRef.close();
+  }
+
+  onSubmitAddRunDialog(): void {
+    const run: Run = { datetime: new Date(this.datetime), distance: this.distance, duration: this.duration };
+    this.runService.addRun(run).subscribe(run => this.runs.push(run));
+    this.dialogRef.close(run);
   }
 }

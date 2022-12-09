@@ -16,18 +16,19 @@ export class RunningComponent implements OnInit {
   constructor(private runService: RunService, private dialog: MatDialog) { }
 
   getRuns(): void {
-    this.runService.getRuns().subscribe(
-      runs => {
-        this.runs = runs;
-        console.log(runs);
-      }
-    );
+    this.runService.getRuns().subscribe((response: any) => {
+      if (response) this.runs = response;
+      console.log(response);
+    });
   }
 
-  openAddRunDialog(): void {
-    const dialogRef = this.dialog.open(AddRunDialogComponent);
+  onOpenAddRunDialog(): void {
+    const dialogRef = this.dialog.open(AddRunDialogComponent, { data: this.runs });
 
-    dialogRef.afterClosed().subscribe(result => this.runService.addRun(result).subscribe(run => this.runs.push(run)));
+    dialogRef.afterClosed().subscribe((response: any) => {
+      if (response) this.getRuns();
+      console.log(response);
+    });
   }
 
   ngOnInit(): void {

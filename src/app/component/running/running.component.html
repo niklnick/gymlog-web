@@ -10,9 +10,14 @@
         <mat-card-content>
             <div style="display: flex; justify-content: space-between;">
                 <h2>Runs:</h2>
-                <button mat-icon-button color="primary" matTooltip="Add Run" (click)="openAddRunDialog()">
-                    <mat-icon>add_circle_outline</mat-icon>
-                </button>
+                <span class="button-container">
+                    <button mat-mini-fab color="accent" matTooltip="Refresh Table" (click)="getRuns()">
+                        <mat-icon>refresh_outline</mat-icon>
+                    </button>
+                    <button mat-mini-fab color="accent" matTooltip="Add Run" (click)="onOpenAddRunDialog()">
+                        <mat-icon>add_circle_outline</mat-icon>
+                    </button>
+                </span>
             </div>
             <table mat-table recycleRows [dataSource]="runs">
                 <ng-container matColumnDef="datetime">

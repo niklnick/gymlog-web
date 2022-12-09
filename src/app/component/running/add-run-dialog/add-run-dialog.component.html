@@ -1,21 +1,24 @@
 <h1 mat-dialog-title>Add Run</h1>
 <div mat-dialog-content>
-    <mat-form-field appearance="outline">
-        <mat-label>Date and Time</mat-label>
-        <input matInput type="datetime-local" [(ngModel)]="datetime" required>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <mat-label>Distance</mat-label>
-        <input matInput [(ngModel)]="distance" required>
-        <span matTextSuffix> km</span>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <mat-label>Duration</mat-label>
-        <span matTextSuffix> sec</span>
-        <input matInput [(ngModel)]="duration" required>
-    </mat-form-field>
+    <form #addRunForm="ngForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Date and Time</mat-label>
+            <input matInput type="datetime-local" [(ngModel)]="datetime" name="datetime" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Distance</mat-label>
+            <input matInput [(ngModel)]="distance" name="distance" required>
+            <span matTextSuffix> km</span>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Duration</mat-label>
+            <span matTextSuffix> sec</span>
+            <input matInput [(ngModel)]="duration" name="duration" required>
+        </mat-form-field>
+    </form>
 </div>
 <div mat-dialog-actions style="float: right">
-    <button mat-raised-button color="primary" [disabled]="!datetime || !distance || !duration"
-        (click)="onSubmitRun()">Submit</button>
+    <button mat-raised-button color="warn" (click)="onCancelAddRunDialog()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="onSubmitAddRunDialog()"
+        [disabled]="addRunForm.invalid">Submit</button>
 </div>
