@@ -11,7 +11,7 @@ import { AddRunDialogComponent } from './add-run-dialog/add-run-dialog.component
 })
 export class RunningComponent implements OnInit {
   runs: Run[] = [];
-  displayedColumns = ['datetime', 'distance', 'duration', 'pace'];
+  displayedColumns = ['datetime', 'distance', 'duration', 'pace', 'delete'];
 
   constructor(private runService: RunService, private dialog: MatDialog) { }
 
@@ -27,6 +27,12 @@ export class RunningComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((response: any) => {
       if (response) this.getRuns();
+      console.log(response);
+    });
+  }
+
+  onDeleteRun(runId: number): void {
+    this.runService.deleteRun(runId).subscribe((response: any) => {
       console.log(response);
     });
   }

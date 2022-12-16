@@ -24,11 +24,11 @@ export class RunService {
     return this.http.post<Run[]>(`${this.apiServerUrl}/run/addList`, runs);
   }
 
-  public update(run: Run): Observable<Run> {
+  public updateRun(run: Run): Observable<Run> {
     return this.http.put<Run>(`${this.apiServerUrl}/run/update`, run);
   }
 
-  public delete(runId: number): Observable<void> {
+  public deleteRun(runId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/run/delete/${runId}`);
   }
 }

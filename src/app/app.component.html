@@ -1,8 +1,8 @@
 <mat-toolbar>
-    <button mat-icon-button (click)="sidenav.toggle()">
+    <button mat-icon-button color="primary" (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
     </button>
-    <a mat-button id="mat-toolbar-header" [routerLink]="['dashboard']">{{ title }}</a>
+    <a mat-button color="primary" id="mat-toolbar-header" [routerLink]="['dashboard']">{{ title }}</a>
 </mat-toolbar>
 <mat-sidenav-container id="mat-sidenav-container">
     <mat-sidenav #sidenav mode="side">
